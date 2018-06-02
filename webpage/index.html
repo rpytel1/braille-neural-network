@@ -80,6 +80,9 @@
                 </div>
                 <button type="button" class="btn btn-success" ng-click="sendParams()">Ustaw Parametry
                 </button>
+                <div class="alert alert-success" ng-if="trained">
+                    <strong>Model wytrenowany!</strong>
+                </div>
             </div>
             <div class="form-group">
                 <label for="usr">Wpisz swój tekst do przetłumaczenia</label>

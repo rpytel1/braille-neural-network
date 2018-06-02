@@ -3,6 +3,8 @@ angular.module('NNApp', [])
         $scope.brailleText = [];
         $scope.translateToBraille = function () {
             $scope.brailleText = [];
+            $scope.trained=false;
+
             console.log($scope.sendText);
             var chars = $scope.sendText.split('');
             console.log(chars);
@@ -12,6 +14,7 @@ angular.module('NNApp', [])
             console.log($scope.brailleText);
         };
         $scope.sendParams = function () {
+           $scope.trained=false;
             var data = $.param({
                 epoch: $scope.epoch,
                 hidden: $scope.hiddenLayer,
@@ -27,9 +30,10 @@ angular.module('NNApp', [])
                 data: data
             }
             $http(req).then(function () {
-                console.log("success Param")
+                console.log("success Param");
+                $scope.trained = true;
             }, function () {
-                console.log("failed PAram")
+                console.log("failed PAram");
             });
 
         };
