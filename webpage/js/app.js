@@ -1,5 +1,5 @@
 angular.module('NNApp', [])
-    .controller('NNController', ['$scope','$http' ,function ($scope,$http) {
+    .controller('NNController', function ($scope, $http) {
         $scope.brailleText = [];
         $scope.translateToBraille = function () {
             $scope.brailleText = [];
@@ -11,18 +11,44 @@ angular.module('NNApp', [])
             });
             console.log($scope.brailleText);
         };
+        $scope.sendParams = function () {
+            var data = $.param({
+                epoch: $scope.epoch,
+                hidden: $scope.hiddenLayer,
+                learningRate: $scope.learningRate
 
+            });
+            var req = {
+                method: 'POST',
+                url: 'http://localhost:5000/translate',
+                headers: {
+                    'Content-Type': undefined
+                },
+                data: data
+            }
+            $http(req).then(function () {
+                console.log("success Param")
+            }, function () {
+                console.log("failed PAram")
+            });
+
+        };
         $scope.sendToNetwork = function () {
-            $http.post("http://localhost:8080/network", {
-                'text': $scope.sendText,
-                'epoch':$scope.epoch,
-                'learningRate':$scope.learningRate,
-                'hiddenLayer': $scope.hiddenLayer
-            })
-                .success(function (response) {
-                    console.log(response.data);
-                    $scope.result = response.data;
-                });
+            var req = {
+                method: 'POST',
+                url: 'http://localhost:5000/translate',
+                headers: {
+                    'Content-Type': undefined
+                },
+                data: {text: $scope.sendText}
+            }
+            $http(req).then(function (data) {
+                console.log(data);
+                $scope.result = data
+            }, function () {
+                console.log("failed")
+            });
+
         };
 
-    }]);
+    });
