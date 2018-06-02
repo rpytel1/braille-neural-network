@@ -5,7 +5,7 @@ class DataReader:
 
     @staticmethod
     def read_training_data():
-        input = np.loadtxt(r"C:\Users\Tomek\Documents\Studia\PSZT\Braille_Translator\Resources\26\data_set26.txt",
+        input = np.loadtxt(r"./Resources/26/data_set26.txt",
                            dtype='i', delimiter=" ")
         x = input[:, :6]
         y = input[:, 6:32]
@@ -14,7 +14,7 @@ class DataReader:
 
     @staticmethod
     def read_test_data():
-        input = np.loadtxt(r"C:\Users\Tomek\Documents\Studia\PSZT\Braille_Translator\Resources\26\test_set26.txt",
+        input = np.loadtxt(r"./Resources/26/test_set26.txt",
                            dtype='i', delimiter=" ")
 
         return input

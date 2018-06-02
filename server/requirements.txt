@@ -1,5 +1,7 @@
 numpy
-tkinter
+
 flask
 flask-restful
 flask-cors
+
+flask-triangle
